@@ -3,14 +3,14 @@ from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropou
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 import os
 
-# ✅ Disable GPU (force CPU only)
+#  Disable GPU (force CPU only)
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
-# ✅ Define paths
+#  Define paths
 train_dir = 'dataset/train'
 val_dir = 'dataset/test'
 
-# ✅ Data preprocessing
+#  Data preprocessing
 train_datagen = ImageDataGenerator(rescale=1./255)
 val_datagen = ImageDataGenerator(rescale=1./255)
 
@@ -30,12 +30,12 @@ val_data = val_datagen.flow_from_directory(
     color_mode='grayscale'
 )
 
-# ✅ Debug info to verify data
+#  Debug info to verify data
 print("\nClass indices:", train_data.class_indices)
 print("Training batches:", len(train_data))
 print("Validation batches:", len(val_data))
 
-# ✅ Build the model
+#  Build the model
 model = Sequential([
     Conv2D(32, (3, 3), activation='relu', input_shape=(48, 48, 1)),
     MaxPooling2D(pool_size=(2, 2)),
@@ -54,7 +54,7 @@ model = Sequential([
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
-# ✅ Train with error handling
+#  Train with error handling
 try:
     history = model.fit(
         train_data,
@@ -67,8 +67,8 @@ try:
     if not os.path.exists("model"):
         os.makedirs("model")
     model.save("model/emotion_model.h5")
-    print("\n✅ Model training complete and saved as model/emotion_model.h5")
+    print("\n Model training complete and saved as model/emotion_model.h5")
 
 except Exception as e:
-    print("\n🔥 Training crashed with error:")
+    print("\n Training crashed with error:")
     print(str(e))
