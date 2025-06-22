@@ -12,9 +12,8 @@ emotion-detection-ai/
 ├── emotion_detector.py       # Runs emotion detection live from webcam
 ├── requirements.txt          # All required Python packages
 ├── README.md                 # This file
-├── .gitignore                # Files and folders Git should ignore
 ├── model/
-│   └── emotion_model.h5      # Saved model after training (optional)
+│   └── emotion_model.h5      # Saved model after training
 └── dataset/                  # Not included – download separately
 ```
 
